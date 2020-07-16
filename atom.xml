@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wangzhongyan1.github.io/"/>
-  <updated>2020-07-16T06:41:54.364Z</updated>
+  <updated>2020-07-16T09:07:45.792Z</updated>
   <id>http://wangzhongyan1.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hellohi</title>
+    <link href="http://wangzhongyan1.github.io/2020/07/16/Hellohi/"/>
+    <id>http://wangzhongyan1.github.io/2020/07/16/Hellohi/</id>
+    <published>2020-07-16T09:07:45.000Z</published>
+    <updated>2020-07-16T09:07:45.792Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello-world</title>
+    <link href="http://wangzhongyan1.github.io/2020/07/16/Hello-world-0/"/>
+    <id>http://wangzhongyan1.github.io/2020/07/16/Hello-world-0/</id>
+    <published>2020-07-16T09:05:22.000Z</published>
+    <updated>2020-07-16T09:05:22.505Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
