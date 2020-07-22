@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wangzhongyan1.github.io/"/>
-  <updated>2020-07-22T05:14:54.291Z</updated>
+  <updated>2020-07-22T08:38:30.376Z</updated>
   <id>http://wangzhongyan1.github.io/</id>
   
   <author>
@@ -17,23 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello-world</title>
+    <title>Chapter 2</title>
     <link href="http://wangzhongyan1.github.io/2020/07/16/Hello-world-0/"/>
     <id>http://wangzhongyan1.github.io/2020/07/16/Hello-world-0/</id>
     <published>2020-07-16T09:05:22.000Z</published>
-    <updated>2020-07-22T05:14:54.291Z</updated>
+    <updated>2020-07-22T08:38:30.376Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="Chapter-2-模型评估与选择"><a href="#Chapter-2-模型评估与选择" class="headerlink" title="Chapter 2 模型评估与选择"></a>Chapter 2 模型评估与选择</h1><p>先留一个第一章的坑现在懒得填了，以后…以后….</p><font color=#0099ff size=3 face="黑体">注：此处误差均指误差期望</font> <ul><li>测试集：实际使用中遇到的数据</li><li>验证集：选择模型时用于评估的数据集</li><li>训练集：用于训练模型的数据集<h2 id="2-1-经验误差与过拟合"><a href="#2-1-经验误差与过拟合" class="headerlink" title="2.1 经验误差与过拟合"></a>2.1 经验误差与过拟合</h2></li><li>训练误差（经验误差）：训练集上的误差</li><li>测试误差：测试集上的误差，通常作为泛化误差的近似</li><li>泛化误差 ：在新样本上的误差  </li></ul><h2 id="2-2-模型泛化能力评估方法"><a href="#2-2-模型泛化能力评估方法" class="headerlink" title="2.2 模型泛化能力评估方法"></a>2.2 模型泛化能力评估方法</h2><ul><li><p>留出法：<br>将数据集D直接拆分为两个互斥集合分别作为训练集与测试集<br>训练/测试集要保持数据分布一致性，比如训练集半正半负数，则测试集也应该半正半负。通常采用若干次随机划分(2/3~4/5)(为减少因样本划分不同产生的差别)，重复实验后取平均值作为结果。<br>例：|D|=500, 训练：200(100:100)，测试：300(150:150).</p></li><li><p>交叉验证法：<br>将数据集D划分为k个大小相似的互斥子集(均保持数据分布一致性)，每次抽出一个作为测试集，其余k-1个作为训练集，由此得到k个结果随后取均值。通常也成为“k折交叉验证”，同样，为减少因数据划分不同引起的差别，优势重复多次：p次k折交叉验证。<br>当k=|D|时，称为“留一法”，绝大多数情况下，留一法结果较准确，但计算开销大。</p></li></ul><p><font color=#0099ff size=3 face="黑体">注：上述方法因保留一部分样本用于测试，因此训练集是小于D的，因样本规模不同会引起误差，虽然留一法可以减少这种误差，但是计算开销过大，为解决上述问题，引出下面的方法</font></p><ul><li>自助法(优点：适用于数据集小，难以划分训练集、测试集 缺点：改变数据集分布，引入估计偏差)：<br>采用随机不放回抽样抽取|D|次。   </li></ul><h2 id="2-3-性能度量-模型泛化能力评价标准——取决于算法、数据、任务需求"><a href="#2-3-性能度量-模型泛化能力评价标准——取决于算法、数据、任务需求" class="headerlink" title="2.3 性能度量(模型泛化能力评价标准——取决于算法、数据、任务需求)"></a>2.3 性能度量(模型泛化能力评价标准——取决于算法、数据、任务需求)</h2><p>错误率： 分错的个数/总数<br>精度：分对的个数/总数<br>查准率P：所有我预测为真例中确实为真例的比例<br>查全率R：所有真例中我预测出来的比例<br>回归任务中最常用的是均方误差(连续值问题)<br>分类任务中常用错误率和精度(离散值问题)<br>混淆矩阵：误差矩阵，即横列为预测结果纵列为真实情况矩阵。<br>宏查准\全率：多个二分类混淆矩阵依次求出P、R,求平均值。<br>微查准\全率：先将混淆矩阵对应元素平均再计算。<br>调和平均：受极值影响大，特别是极小值。现实生活中无法获得总体单位数而不能计算平均值时使用。  </p><script type="math/tex; mode=display">\frac{1}{F_1}=\frac{1}{2}\cdot\left (\frac{1}{P}+\frac{1}{R} \right )</script><p>加权调和平均：已分组且已知各组标志的总量。</p><script type="math/tex; mode=display">\frac{1}{F_\beta}=\frac{1}{1+\beta^2}\cdot\left (\frac{1}{P}+\frac{\beta^2}{R} \right )</script><h3 id="2-3-1-P-R图"><a href="#2-3-1-P-R图" class="headerlink" title="2.3.1 P-R图"></a>2.3.1 P-R图</h3><p>定义： 将所有预测结果进行排序，最可能为例的放在前面，并计算P值和R值，由此，P值一定逐渐下降，R值逐渐增大。<br>评判依据:</p><ol><li>完全包住别的曲线的曲线性能最优。</li><li>平衡点(BEP)：P=R时取值越高性能越好.</li><li><script type="math/tex">F_1</script>: 查准率与查全率的调和平均</li><li><script type="math/tex">F_\beta</script>为加权调和平均，<script type="math/tex">\beta>1</script>查全率重要，等于则退化回去。</li></ol><h3 id="ROC图与ACU图"><a href="#ROC图与ACU图" class="headerlink" title="ROC图与ACU图"></a>ROC图与ACU图</h3><ul><li>ROC曲线(Receiver Operating Characteristic)</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;Chapter-1&quot;&gt;&lt;a href=&quot;#Chapter-1&quot; class=&quot;headerlink&quot; title=&quot;Chapter 1&quot;&gt;&lt;/a&gt;Chapter 1&lt;/h1&gt;
+        &lt;h1 id=&quot;Chapter-2-模型评估与选择&quot;&gt;&lt;a href=&quot;#Chapter-2-模型评估与选择&quot; class=&quot;headerlink&quot; title=&quot;Chapter 2 模型评估与选择&quot;&gt;&lt;/a&gt;Chapter 2 模型评估与选择&lt;/h1&gt;&lt;p&gt;先留一个第一章的坑现
       
     
     </summary>
     
+    
+      <category term="Watermelon" scheme="http://wangzhongyan1.github.io/categories/Watermelon/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter 2</title>
+    <link href="http://wangzhongyan1.github.io/2020/07/16/Chapter%202/"/>
+    <id>http://wangzhongyan1.github.io/2020/07/16/Chapter%202/</id>
+    <published>2020-07-16T09:05:22.000Z</published>
+    <updated>2020-07-22T05:57:57.290Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第二章-模型评估与选择"><a href="#第二章-模型评估与选择" class="headerlink" title="第二章 模型评估与选择"></a>第二章 模型评估与选择</h1><p align="left">&emsp 先留一个第一章的坑现在懒得填了，以后...以后....</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第二章-模型评估与选择&quot;&gt;&lt;a href=&quot;#第二章-模型评估与选择&quot; class=&quot;headerlink&quot; title=&quot;第二章 模型评估与选择&quot;&gt;&lt;/a&gt;第二章 模型评估与选择&lt;/h1&gt;&lt;p align=&quot;left&quot;&gt;&amp;emsp 先留一个第一章的坑现在懒得填了
+      
+    
+    </summary>
+    
+    
+      <category term="Watermelon" scheme="http://wangzhongyan1.github.io/categories/Watermelon/"/>
     
     
   </entry>
