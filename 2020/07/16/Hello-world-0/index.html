@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wangzhongyan1.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Chapter 2 模型评估与选择先留一个第一章的坑现在懒得填了，以后…以后…. 注：此处误差均指误差期望    测试集：实际使用中遇到的数据 验证集：选择模型时用于评估的数据集 训练集：用于训练模型的数据集2.1 经验误差与过拟合 训练误差（经验误差）：训练集上的误差 测试误差：测试集上的误差，通常作为泛化误差的近似 泛化误差 ：在新样本上的误差    2.2 模型泛化能力评估方法 留出法：将数">
+  <meta name="description" content="Chapter 2 模型评估与选择先留一个第一章的坑现在懒得填了，以后…以后…. 注：此处误差均指误差期望    测试集：实际使用中遇到的数据 验证集：选择模型时用于评估的数据集 训练集：用于训练模型的数据集2.1 经验误差与过拟合 训练误差（经验误差）：训练集上的误差 测试误差：测试集上的误差，通常作为泛化误差的近似 泛化误差 ：在新样本上的误差    2.2 模型泛化能力评估方法(评估方法)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chapter 2">
 <meta property="og:url" content="http://wangzhongyan1.github.io/2020/07/16/Hello-world-0/index.html">
 <meta property="og:site_name" content="Emma">
-<meta property="og:description" content="Chapter 2 模型评估与选择先留一个第一章的坑现在懒得填了，以后…以后…. 注：此处误差均指误差期望    测试集：实际使用中遇到的数据 验证集：选择模型时用于评估的数据集 训练集：用于训练模型的数据集2.1 经验误差与过拟合 训练误差（经验误差）：训练集上的误差 测试误差：测试集上的误差，通常作为泛化误差的近似 泛化误差 ：在新样本上的误差    2.2 模型泛化能力评估方法 留出法：将数">
+<meta property="og:description" content="Chapter 2 模型评估与选择先留一个第一章的坑现在懒得填了，以后…以后…. 注：此处误差均指误差期望    测试集：实际使用中遇到的数据 验证集：选择模型时用于评估的数据集 训练集：用于训练模型的数据集2.1 经验误差与过拟合 训练误差（经验误差）：训练集上的误差 测试误差：测试集上的误差，通常作为泛化误差的近似 泛化误差 ：在新样本上的误差    2.2 模型泛化能力评估方法(评估方法)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-16T09:05:22.000Z">
-<meta property="article:modified_time" content="2020-07-23T01:31:50.682Z">
+<meta property="article:modified_time" content="2020-07-23T10:26:01.706Z">
 <meta property="article:author" content="Emma">
 <meta name="twitter:card" content="summary">
 
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-23 09:31:50" itemprop="dateModified" datetime="2020-07-23T09:31:50+08:00">2020-07-23</time>
+                <time title="修改时间：2020-07-23 18:26:01" itemprop="dateModified" datetime="2020-07-23T18:26:01+08:00">2020-07-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +262,7 @@
 <li>测试误差：测试集上的误差，通常作为泛化误差的近似</li>
 <li>泛化误差 ：在新样本上的误差  </li>
 </ul>
-<h2 id="2-2-模型泛化能力评估方法"><a href="#2-2-模型泛化能力评估方法" class="headerlink" title="2.2 模型泛化能力评估方法"></a>2.2 模型泛化能力评估方法</h2><ul>
+<h2 id="2-2-模型泛化能力评估方法-评估方法"><a href="#2-2-模型泛化能力评估方法-评估方法" class="headerlink" title="2.2 模型泛化能力评估方法(评估方法)"></a>2.2 模型泛化能力评估方法(评估方法)</h2><ul>
 <li><p>留出法：<br>将数据集D直接拆分为两个互斥集合分别作为训练集与测试集<br>训练/测试集要保持数据分布一致性，比如训练集半正半负数，则测试集也应该半正半负。通常采用若干次随机划分(2/3~4/5)(为减少因样本划分不同产生的差别)，重复实验后取平均值作为结果。<br>例：|D|=500, 训练：200(100:100)，测试：300(150:150).</p>
 </li>
 <li><p>交叉验证法：<br>将数据集D划分为k个大小相似的互斥子集(均保持数据分布一致性)，每次抽出一个作为测试集，其余k-1个作为训练集，由此得到k个结果随后取均值。通常也成为“k折交叉验证”，同样，为减少因数据划分不同引起的差别，优势重复多次：p次k折交叉验证。<br>当k=|D|时，称为“留一法”，绝大多数情况下，留一法结果较准确，但计算开销大。</p>
@@ -272,7 +272,7 @@
 <ul>
 <li>自助法(优点：适用于数据集小，难以划分训练集、测试集 缺点：改变数据集分布，引入估计偏差)：<br>采用随机不放回抽样抽取|D|次。   </li>
 </ul>
-<h2 id="2-3-性能度量-模型泛化能力评价标准——取决于算法、数据、任务需求"><a href="#2-3-性能度量-模型泛化能力评价标准——取决于算法、数据、任务需求" class="headerlink" title="2.3 性能度量(模型泛化能力评价标准——取决于算法、数据、任务需求)"></a>2.3 性能度量(模型泛化能力评价标准——取决于算法、数据、任务需求)</h2><p>错误率： 分错的个数/总数<br>精度：分对的个数/总数<br>查准率P：所有我预测为真例中确实为真例的比例<br>查全率R：所有真例中我预测出来的比例<br>回归任务中最常用的是均方误差(连续值问题)<br>分类任务中常用错误率和精度(离散值问题)<br>混淆矩阵：误差矩阵，即横列为预测结果纵列为真实情况矩阵。<br>宏查准\全率：多个二分类混淆矩阵依次求出P、R,求平均值。<br>微查准\全率：先将混淆矩阵对应元素平均再计算。<br>调和平均：受极值影响大，特别是极小值。现实生活中无法获得总体单位数而不能计算平均值时使用。  </p>
+<h2 id="2-3-性能度量-模型泛化能力评价标准——取决于算法、数据、任务需求"><a href="#2-3-性能度量-模型泛化能力评价标准——取决于算法、数据、任务需求" class="headerlink" title="2.3 性能度量(模型泛化能力评价标准——取决于算法、数据、任务需求)"></a>2.3 性能度量(模型泛化能力评价标准——取决于算法、数据、任务需求)</h2><p>错误率： 分错的个数/总数<br>精度：分对的个数/总数<br>查准率P：所有我预测为真例中确实为真例的比例<br>查全率R：所有真例中我预测出来的比例<br>真正率：所有正例中，被我说为的比率(说对了)<br>假正率：所有反例中，被我说为正例的(说错了)<br>回归任务中最常用的是均方误差(连续值问题)<br>分类任务中常用错误率和精度(离散值问题)<br>混淆矩阵：误差矩阵，即横列为预测结果纵列为真实情况矩阵。<br>宏查准\全率：多个二分类混淆矩阵依次求出P、R,求平均值。<br>微查准\全率：先将混淆矩阵对应元素平均再计算。<br>调和平均：受极值影响大，特别是极小值。现实生活中无法获得总体单位数而不能计算平均值时使用。  </p>
 <script type="math/tex; mode=display">\frac{1}{F_1}=\frac{1}{2}\cdot\left (\frac{1}{P}+\frac{1}{R} \right )</script><p>加权调和平均：已分组且已知各组标志的总量。</p>
 <script type="math/tex; mode=display">\frac{1}{F_\beta}=\frac{1}{1+\beta^2}\cdot\left (\frac{1}{P}+\frac{\beta^2}{R} \right )</script><h3 id="2-3-1-P-R图"><a href="#2-3-1-P-R图" class="headerlink" title="2.3.1 P-R图"></a>2.3.1 P-R图</h3><p>定义： 将所有预测结果进行排序，最可能为例的放在前面，并计算P值和R值，由此，P值一定逐渐下降，R值逐渐增大。<br>评判依据:</p>
 <ol>
@@ -281,9 +281,36 @@
 <li><script type="math/tex">F_1</script>: 查准率与查全率的调和平均</li>
 <li><script type="math/tex">F_\beta</script>为加权调和平均，<script type="math/tex">\beta>1</script>查全率重要，等于则退化回去。</li>
 </ol>
-<h3 id="ROC图与ACU图"><a href="#ROC图与ACU图" class="headerlink" title="ROC图与ACU图"></a>ROC图与ACU图</h3><ul>
-<li>ROC曲线(Receiver Operating Characteristic)</li>
+<h3 id="2-3-2-ROC图与ACU图"><a href="#2-3-2-ROC图与ACU图" class="headerlink" title="2.3.2 ROC图与ACU图"></a>2.3.2 ROC图与ACU图</h3><ul>
+<li>ROC曲线(Receiver Operating Characteristic)<br>根据学习器的学校效果进行排序，最可能为正例的怕排在前面，否则放在后面，ROC曲线的纵轴为“真正率”，横轴为“假正率”，也就是横坐标相同时，纵坐标越小表现越差。</li>
+<li>ROC曲线对角线代表随机猜测，也就是真正率=假正率，也就是：无论它是正例还是反例，被我预测为正例的可能性都相同，所以为随机猜测。</li>
+<li>点(0,1)，就是假正率为0，真正率为1，也就是百分百准确的理想模型，也可以说是所有正例都排在反例前面。为什么这么说呢。以为不是可以理解为排队问题吗，ROC曲线可以这么绘：假设一共有<script type="math/tex">m^+</script>个正例，<script type="math/tex">m^-</script>个反例，先假设预测所有均为反，此时自然横纵坐标均为0，随后按照可能为正例的可能性顺序，依次将其预测为正例(按照阈值，也就是预测得到的可能性，也就是存在同一个阈值有两个例的可能)，当这个例确实为正例时间，则横坐标不变，纵坐标上升<script type="math/tex">(\frac{1}{m^+})</script>,否则横坐标增大<script type="math/tex">(\frac{1}{m^-})</script>。</li>
+<li>进行比较时，同样包在外面的模型表现得更好，因为假正率相同的情况下真正率更大。若两个曲线发生交叉，可比较其下包围的面积(求一纵列一纵列小梯形面积，前项为高(可能为0)，后项为(上底+下底面)，南瓜书里的图非常直观)：<script type="math/tex; mode=display">AUC=\frac{1}{2}\sum_{i=1}^{m-1}(x_{i+1}-x_i)\cdot(y_i+y_{i+1})</script>排序的损失定义为(上半部分的面积)：<script type="math/tex; mode=display">1-AUC=l_{rank}=\frac{1}{m^+m^-}\sum_{x^+\in D^+}\sum_{x^-\in D^-}\left (\mathbb{I}(f(x^+)<f(x^-))+\frac{1}{2}\mathbb{I}(f(x^+)=f(x^-))\right )</script></li>
 </ul>
+<h3 id="2-3-3-代价敏感错误率与代价曲线"><a href="#2-3-3-代价敏感错误率与代价曲线" class="headerlink" title="2.3.3 代价敏感错误率与代价曲线"></a>2.3.3 代价敏感错误率与代价曲线</h3><p>在实际生活中，不同的错误代价是不一样的就比如错了一道选择题还是一道大题，代价敏感错误率即把每次错误与否乘上代价值。在这种非均等代价情况下，RO曲线的单纯真正率假正率就不足以表达期望总体代价。此时引入代价曲线：<br>ROC曲线上的没一点对应一个(假正率，真正率)，取(0,假正率)(1,真正率)的曲线，组成的图形的下边界围成的面积为在所有条件下学习器期望总体代价。</p>
+<h2 id="2-4-比较检验-单个学习器性能进行比较检验"><a href="#2-4-比较检验-单个学习器性能进行比较检验" class="headerlink" title="2.4 比较检验(单个学习器性能进行比较检验)"></a>2.4 比较检验(单个学习器性能进行比较检验)</h2><h3 id="2-4-1-单一一次留出法估计时"><a href="#2-4-1-单一一次留出法估计时" class="headerlink" title="2.4.1 单一一次留出法估计时"></a>2.4.1 单一一次留出法估计时</h3><p><font color=#0099ff size=3 face="黑体">注：本节默认错误率为性能度量，用<script type="math/tex">\epsilon</script>表示</font> </p>
+<p><script type="math/tex">\epsilon</script>:泛化错误率  </p>
+<p><script type="math/tex">\hat{\epsilon}</script>:测试错误率</p>
+<p><script type="math/tex">\epsilon_0</script>:我暂且认为是期望错误率，或者泛化错误率</p>
+<p><script type="math/tex">\bar{\epsilon}</script>:临界错误率</p>
+<p><script type="math/tex">m</script>:总样本数</p>
+<p><script type="math/tex">1-\alpha</script>:结论的置信度<br>为什么不好比较:</p>
+<ol>
+<li>要比较泛化能力，但是实验结果只是测试集上的结果</li>
+<li>性能与数据集的选择关系大</li>
+<li><p>机器学习算法有随机性，即使多次于同一个数据集用同样的参数进行结果也可能不<br>定义：泛化错误率为<script type="math/tex">\epsilon</script>的学习器被测得的测试错率为<script type="math/tex">\hat{\epsilon}</script>的概率为(这一行公布是不直达为什么就是打不出来)：</p>
+<p>关于二项分布，在n次独立重复的伯努利试验中，设每次试验中事件A发生的概率为p。用X表示n次伯努利试验中事件A发生的次数,事件{X=k}即为“n次试验中事件A恰好发生k次”，随机变量X的离散概率分布即为二项分布<script type="math/tex">X~B(n,p)</script>约等于n个硬币，每次硬币出现正面的概率为p。图像为钟形，拿硬币来说，<script type="math/tex">n\times p</script>为次数程1/2，也就是期望，一定误分类样本数目等于期望的概率最高。考虑假设<script type="math/tex">“\epsilon\leqslant\epsilon_0”</script>.<br>至于显著度<script type="math/tex">\alpha</script>,当结论确实符合假设时：</p>
+<p>“在<script type="math/tex">\alpha</script>的显著度下假设<script type="math/tex">\epsilon\leqslant\epsilon_0</script>不能被拒绝”  </p>
+<p>=“以<script type="math/tex">1-\alpha</script>的置信度认为错误率不大于<script type="math/tex">\epsilon_0</script>”</p>
+</li>
+</ol>
+<h3 id="2-4-2-多次留出法估计时-t检验：用于样本量不大，标准差未知的两个正态分布差异是否显著"><a href="#2-4-2-多次留出法估计时-t检验：用于样本量不大，标准差未知的两个正态分布差异是否显著" class="headerlink" title="2.4.2 多次留出法估计时(t检验：用于样本量不大，标准差未知的两个正态分布差异是否显著)"></a>2.4.2 多次留出法估计时(t检验：用于样本量不大，标准差未知的两个正态分布差异是否显著)</h3><p>注：<script type="math/tex">\alpha</script>常取0.01、0.1啥的。<br>自由度：计算某统计量时，取值不受限的变量个数，t检验中取(n-自变量-1)<br>k：此处样本数<br>此处我们用的是单总体检验，用于判断一个样本平均数与一个已知的总体平均数的差异是否显著。我们从多次留出法得到多个错误率，可认为是一个分布，目的是判断这个分布的平均数与<script type="math/tex">\epsilon_0</script>的差异是否显著，因为这些错误率可以看作对泛化错误率<script type="math/tex">\epsilon_0</script>的独立采样那么<script type="math/tex">\tau_t=\frac{\sqrt{k}(\mu-\epsilon_0)}{\sigma}</script>符合自由度为<script type="math/tex">k-1</script>的t分布。同样为钟形，左右临界各有<script type="math/tex">2/\alpha</script>的面积，若平均错误率与泛化误差的差值<script type="math/tex">|\mu-\epsilon_0|</script>位于<script type="math/tex">[t_{-\alpha/2},t_\alpha/2]</script>内。则不能拒绝“<script type="math/tex">\mu=\epsilon_0</script>”的假设，即可以认为泛化错误率为<script type="math/tex">\epsilon_0</script>,置信度为<script type="math/tex">1-\alpha</script>,也就是认为他俩差异不大。否则拒绝该假设，认为他俩具有显著不同。  </p>
+<h2 id="2-5-比较检验-不同学习器性能进行比较检验，同一个数据集比较两个算法性能"><a href="#2-5-比较检验-不同学习器性能进行比较检验，同一个数据集比较两个算法性能" class="headerlink" title="2.5 比较检验(不同学习器性能进行比较检验，同一个数据集比较两个算法性能)"></a>2.5 比较检验(不同学习器性能进行比较检验，同一个数据集比较两个算法性能)</h2><p><script type="math/tex">r_i</script>：第i个算法的平均序值.<br>注：t检验的前提是他们均是独立采样，但是实际上不同轮次的训练集有一定程度的重叠，实际会高估假设成立概率，为解决这个问题可采用<script type="math/tex">5\times 2</script>交叉验证，见2.5.2。</p>
+<h3 id="2-5-1-交叉验证t检验"><a href="#2-5-1-交叉验证t检验" class="headerlink" title="2.5.1 交叉验证t检验"></a>2.5.1 交叉验证t检验</h3><p>对k折交叉检验所得到的k组错误率依次成对求差：<script type="math/tex">|\Delta_i=\epsilon^A_i-\epsilon^B_i|</script>,对所有差值按照上述方法求其与0的t检验：<script type="math/tex">\tau_t=\frac{\sqrt{k}\mu}{\sigma}</script>(因为按理说两个数值应该一样，也就是结果等于0，所以看和0的差距)。</p>
+<h3 id="2-5-2-5-times-2交叉验证"><a href="#2-5-2-5-times-2交叉验证" class="headerlink" title="2.5.2 5\times 2交叉验证"></a>2.5.2 <script type="math/tex">5\times 2</script>交叉验证</h3><p>定义：做5次2折交叉验证。每次验证完数据打乱。例：对A，B两个学习器，每次都回得到A的两个误差和B的两个，对应数值求差，也就是得到两个<script type="math/tex">\Delta</script>,对这两个差值求平均，结果作为均值。对每一次2折实验都求出方差，<script type="math/tex">\tau_t=\frac{\mu}{\sqrt{0.2\sum_{i=1}^5\sigma_i^2}}</script>(我也不知道为啥就没有k了)符合自由度为5<br>的t分布？？？？。</p>
+<h3 id="2-5-2-McNemar检验-主要用于而分类问题，与成对t检验一样用与比较两个学习器性能"><a href="#2-5-2-McNemar检验-主要用于而分类问题，与成对t检验一样用与比较两个学习器性能" class="headerlink" title="2.5.2 McNemar检验(主要用于而分类问题，与成对t检验一样用与比较两个学习器性能)"></a>2.5.2 McNemar检验(主要用于而分类问题，与成对t检验一样用与比较两个学习器性能)</h3><p>主要思想：若两个学习器效果相同，则预测错误的个数应该也相同，即<script type="math/tex">|e_A-e_B|</script>服从正态分布。且均值为1，方差为<script type="math/tex">e_A+e_B</script>？？？？。<br>若n个相互独立的随机变量均服从标准正态分布，则这n个服从标准正态分布的随机变量的平方和构成一新的随机变量，其分布规律称为卡方分布。服从标准正态分布的平方：<script type="math/tex">\tau_{\chi^2}=\frac{(|e_A-e_B|-1)^2}{e_A+e_B}</script>(为啥自由度就为1了呢)检验方法同样，做出假设，求出临界点，给出拒绝域，验证假设。给定显著度，当求得的值小于临界值时则不能拒绝假设，即认为两者相似。</p>
+<h2 id="2-6-Friedman检验与Nemenyi后续检验-不同学习器性能进行比较检验，多数据集比较多个算法性能"><a href="#2-6-Friedman检验与Nemenyi后续检验-不同学习器性能进行比较检验，多数据集比较多个算法性能" class="headerlink" title="2.6 Friedman检验与Nemenyi后续检验(不同学习器性能进行比较检验，多数据集比较多个算法性能)"></a>2.6 Friedman检验与Nemenyi后续检验(不同学习器性能进行比较检验，多数据集比较多个算法性能)</h2><p>F检验：同一组数据集上，根据测试错误率对学习器性能进行排序，若性能相同则平分序值。若k个学习器性能相同，则他们的序值应该也相同，且第i个算法的序指服从正态分布。均值为：<script type="math/tex">(k+1)/2</script>,方差为：<script type="math/tex">(k^2-1)/12</script>？？？？？？？。<br>若假设被拒绝就是说所有算法显著不同则需要后续检验。首先计算平均序值差别的临界值域，若两个算法平均序值之差超过了这个域，则以响应置信度拒绝“两个算法性能相同”的假设，即就是显著不同。<br>这里我迷惑了….，现在看Friedman检验图吧，如果一个横线完全在另一个的前面，就好。有交叠就说不定。</p>
+<h2 id="2-7-偏差与方差-对泛化性能的解释"><a href="#2-7-偏差与方差-对泛化性能的解释" class="headerlink" title="2.7 偏差与方差(对泛化性能的解释)"></a>2.7 偏差与方差(对泛化性能的解释)</h2><p>偏差：指预测值与真实值的差，体现准确度<br>方差：指每次预测值与预测值的期望的差均方，体现稳定性<br>期望泛化误差：方差+偏差+噪声<br>方差与偏差具有矛盾性，当训练程度提升，自然偏差变小，但与此同时对数据集的波动更加敏感，方差变大。欠拟合时，偏差主导泛化误差，反之相反。</p>
 
     </div>
 
@@ -362,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-模型评估与选择"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2 模型评估与选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-经验误差与过拟合"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 经验误差与过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-模型泛化能力评估方法"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 模型泛化能力评估方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-性能度量-模型泛化能力评价标准——取决于算法、数据、任务需求"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 性能度量(模型泛化能力评价标准——取决于算法、数据、任务需求)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-P-R图"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.3.1 P-R图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC图与ACU图"><span class="nav-number">1.3.2.</span> <span class="nav-text">ROC图与ACU图</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-模型评估与选择"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2 模型评估与选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-经验误差与过拟合"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 经验误差与过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-模型泛化能力评估方法-评估方法"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 模型泛化能力评估方法(评估方法)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-性能度量-模型泛化能力评价标准——取决于算法、数据、任务需求"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 性能度量(模型泛化能力评价标准——取决于算法、数据、任务需求)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-P-R图"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.3.1 P-R图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-ROC图与ACU图"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.3.2 ROC图与ACU图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-代价敏感错误率与代价曲线"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3.3 代价敏感错误率与代价曲线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-比较检验-单个学习器性能进行比较检验"><span class="nav-number">1.4.</span> <span class="nav-text">2.4 比较检验(单个学习器性能进行比较检验)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-单一一次留出法估计时"><span class="nav-number">1.4.1.</span> <span class="nav-text">2.4.1 单一一次留出法估计时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-多次留出法估计时-t检验：用于样本量不大，标准差未知的两个正态分布差异是否显著"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.4.2 多次留出法估计时(t检验：用于样本量不大，标准差未知的两个正态分布差异是否显著)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-比较检验-不同学习器性能进行比较检验，同一个数据集比较两个算法性能"><span class="nav-number">1.5.</span> <span class="nav-text">2.5 比较检验(不同学习器性能进行比较检验，同一个数据集比较两个算法性能)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-1-交叉验证t检验"><span class="nav-number">1.5.1.</span> <span class="nav-text">2.5.1 交叉验证t检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-2-5-times-2交叉验证"><span class="nav-number">1.5.2.</span> <span class="nav-text">2.5.2 5\times 2交叉验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-2-McNemar检验-主要用于而分类问题，与成对t检验一样用与比较两个学习器性能"><span class="nav-number">1.5.3.</span> <span class="nav-text">2.5.2 McNemar检验(主要用于而分类问题，与成对t检验一样用与比较两个学习器性能)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-Friedman检验与Nemenyi后续检验-不同学习器性能进行比较检验，多数据集比较多个算法性能"><span class="nav-number">1.6.</span> <span class="nav-text">2.6 Friedman检验与Nemenyi后续检验(不同学习器性能进行比较检验，多数据集比较多个算法性能)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-偏差与方差-对泛化性能的解释"><span class="nav-number">1.7.</span> <span class="nav-text">2.7 偏差与方差(对泛化性能的解释)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
