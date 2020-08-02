@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wangzhongyan1.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="4 决策树">
+  <meta name="description" content="4 决策树4.1 基本流程决策树是基于树的结构进行决策、分类。一个典型的决策树可以是：  我想找男朋友：多大了？…长得帅不帅？…多高？…什么工作？…  我们最终的结果都是判断这个人是否符合理想型的要求，每一次询问都是对某一个属性的测试，可以导出结论或者下一个判定问题，考虑范围是在上一次决策范围之呢的，也就是首先年龄要符合，其次考虑后面的条件。 决策树的生成是一个递归的过程：输入：训练集D;属性集A">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chapter 4">
 <meta property="og:url" content="http://wangzhongyan1.github.io/2020/07/23/Chapter%204/index.html">
 <meta property="og:site_name" content="Emma">
-<meta property="og:description" content="4 决策树">
+<meta property="og:description" content="4 决策树4.1 基本流程决策树是基于树的结构进行决策、分类。一个典型的决策树可以是：  我想找男朋友：多大了？…长得帅不帅？…多高？…什么工作？…  我们最终的结果都是判断这个人是否符合理想型的要求，每一次询问都是对某一个属性的测试，可以导出结论或者下一个判定问题，考虑范围是在上一次决策范围之呢的，也就是首先年龄要符合，其次考虑后面的条件。 决策树的生成是一个递归的过程：输入：训练集D;属性集A">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-23T10:29:30.000Z">
-<meta property="article:modified_time" content="2020-08-02T04:48:48.304Z">
+<meta property="article:modified_time" content="2020-08-02T12:13:21.384Z">
 <meta property="article:author" content="Emma">
 <meta name="twitter:card" content="summary">
 
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-02 12:48:48" itemprop="dateModified" datetime="2020-08-02T12:48:48+08:00">2020-08-02</time>
+                <time title="修改时间：2020-08-02 20:13:21" itemprop="dateModified" datetime="2020-08-02T20:13:21+08:00">2020-08-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,7 +251,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="4-决策树"><a href="#4-决策树" class="headerlink" title="4 决策树"></a>4 决策树</h1>
+        <h1 id="4-决策树"><a href="#4-决策树" class="headerlink" title="4 决策树"></a>4 决策树</h1><h1 id="4-1-基本流程"><a href="#4-1-基本流程" class="headerlink" title="4.1 基本流程"></a>4.1 基本流程</h1><p>决策树是基于树的结构进行决策、分类。<br>一个典型的决策树可以是：</p>
+<hr>
+<p>我想找男朋友：<br>多大了？…<br>长得帅不帅？…<br>多高？…<br>什么工作？…</p>
+<hr>
+<p>我们最终的结果都是判断这个人是否符合理想型的要求，每一次询问都是对某一个属性的测试，可以导出结论或者下一个判定问题，考虑范围是在上一次决策范围之呢的，也就是首先年龄要符合，其次考虑后面的条件。</p>
+<p>决策树的生成是一个递归的过程：<br>输入：训练集D;属性集A</p>
+<ol>
+<li>D中样本是否全属于同一类别(无需划分)</li>
+<li>A是否为空或所有样本在所有属性上取值相同(无法划分)<br>—将该节点设置为叶节点，类别设定为该节点所含样本最多的类。(后验)</li>
+<li>当前节点包含的样本集合为空<br>—该节点标记为叶节点，类别设定为其父节点包含类别最多的类。(先验)</li>
+</ol>
+<p>其中，叶节点对应测试结果，其余节点代表属性测试。每个节点的样本根据属性测试被分到不同子节点中。</p>
+<h2 id="4-2-划分选择"><a href="#4-2-划分选择" class="headerlink" title="4.2 划分选择"></a>4.2 划分选择</h2><ul>
+<li>信息熵<br>假设我们要计算D的信息熵<script type="math/tex">{a_1;b_2,a_2,a_3,c_1,c_2}</script>,也就是说D中有2个c类，3个a类，1个c类。<script type="math/tex">p_k</script>为第k类样本所占比例，也就是对a来说<script type="math/tex">p_a=3/6</script>。共有<script type="math/tex">|y|</script>类。 <script type="math/tex; mode=display">Ent(D)=-\sum_{k=1}^{|y|}p_klog_2p_k</script></li>
+<li>信息增益<br>考虑不同分支包含的样本数不同，给不同分支赋予不同权重，也就是某个分支中样本数越多权重越大。基于以上，我们计算出根据属性a对D进行划分的信息增益为：<script type="math/tex; mode=display">Gain(D,a)=Ent(D)-\sum_{v=1}^{V}\frac{|D^v|}{|D|}Ent(D^v)</script>解释一下：增益=原始信息熵-划分后的信息熵之和(信息熵是负数所以这么减)。那个分数是每个分支的权重。信息增益越大表明用该属性进行划分得到的纯收益越大。找到得到最大收益的属性a是最终目标。</li>
+<li>属性a的“固有值”<script type="math/tex; mode=display">IV(a)=-\sum_{v=1}^{V}\frac{|D^v|}{|D|}log_2\frac{|D^v|}{|D|}</script>其中属性a的可能取值越多固有值就越大</li>
+<li>增益率<script type="math/tex; mode=display">Gain_ratio(D,a)=\frac{Gain(D,a)}{IV(a)}</script></li>
+<li>基尼指数</li>
+</ul>
+<h3 id="4-2-1-ID3算法"><a href="#4-2-1-ID3算法" class="headerlink" title="4.2.1 ID3算法"></a>4.2.1 ID3算法</h3><p>ID3算法使用信息增益准则进行属性划分，也就是每次选择信息增益最大的属性作为划分属性。</p>
+<p>缺点：信息增益准则对可取值数目较多的属性有所偏好</p>
+<p>解释：取值较多的的属性的意思可以理解为：年龄{18岁，19岁，20岁…}分了过多个档，这样可能导致10个人被划分到10个分支，此时信息熵为0，纯净但是这种反呢类意义不大。</p>
+<h3 id="4-2-2-C4-5算法"><a href="#4-2-2-C4-5算法" class="headerlink" title="4.2.2 C4.5算法"></a>4.2.2 C4.5算法</h3><p>V4.5算法从候选划分属性中找到信息增益水平高于平均水平的属性，再选择其中信息增益率最高的。<br>增益率准则对可取值数目较少的属性有所偏好所以弥补的ID3算法的偏好问题。</p>
+<h3 id="4-2-3-CART算法"><a href="#4-2-3-CART算法" class="headerlink" title="4.2.3 CART算法"></a>4.2.3 CART算法</h3><p>CART算法使用基尼指数选择划分属性。也就是使用基尼指数作为数据集纯度划分依据，Gini指数越小数据集纯度越高,也就是我们的目标时选择最后基尼指数越小的属性a。</p>
+<script type="math/tex; mode=display">Gini_index(D,a)=\sum_{v=1}^{V}=\frac{|D^v|}{D}Gini_index(D^v)</script><p>其中：</p>
+<script type="math/tex; mode=display">Gini(D)=\sum_{k=1}^{|y|}\sum_{k'\neq k}p_kp_{k'}</script><h2 id="4-3-剪枝处理——解决“过拟合”"><a href="#4-3-剪枝处理——解决“过拟合”" class="headerlink" title="4.3 剪枝处理——解决“过拟合”"></a>4.3 剪枝处理——解决“过拟合”</h2><p>当分枝过多，划分太细，把训练集自身特点当作数据集的一般性质从而发生过拟合。</p>
+<ul>
+<li>预剪枝：在决策树生成过程中对每个节点在划分前进行估计，若当前节点的划分不能带来决策树泛化性能的提升，则停止划分并将当前节点标记为叶节点。<br>优点：降低训练、测试时间开销；降低过拟合风险<br>缺点：基于“贪心”的本质导致一些分支没有展开，就是可能这个分支展开虽然没什么好处但是这个分支的分支展开很有用，因此有导致欠拟合风险。</li>
+<li>后剪枝：在训练集生成一棵可完整的决策树后，自底向上(先考虑最后展开的那个属性节点)对非叶节点进行考察：若将该节点对应的子树替换为叶节点能提升决策树泛化能力，则将该节点替换为叶节点。<br>优点：因自底向上，性能会更好<br>缺点：因为自底向上遍历所有节点，计算开销很大。<h2 id="4-4-连续值和缺失值处理"><a href="#4-4-连续值和缺失值处理" class="headerlink" title="4.4 连续值和缺失值处理"></a>4.4 连续值和缺失值处理</h2><h3 id="4-4-1-连续值"><a href="#4-4-1-连续值" class="headerlink" title="4.4.1 连续值"></a>4.4.1 连续值</h3>前面都在说离散的属性值，对于连续值需要先进行离散化。常见的离散化方法如二分法：将一个属性划分为<script type="math/tex">\leqslant t</script>和<script type="math/tex">>t</script>：假设连续属性a在数据集D上有n个不同取值，将着n个a的不同取值从小到大排序，则对连续属性，在区间<script type="math/tex">[a^i,a^{i+1})</script>上，所产生的划分结果相同，因此我们对(n-1)个候选划分点进行考察，对每个划分点计算信息增益，选择信息增益最大的点作为划分点(把每个区间的中点作为划分点，所以有n-1个):<script type="math/tex; mode=display">T_a=\left \{\frac{a^i+a^{i+1}}{2}|1\leqslant i\leqslant n-1\right \}</script><h3 id="4-4-2-缺失值处理"><a href="#4-4-2-缺失值处理" class="headerlink" title="4.4.2 缺失值处理"></a>4.4.2 缺失值处理</h3>当样本不完整时，即某些属性值缺失，那么<br>(1)此时如何选择划分属性？<br>答：我们可以根据没有缺失该属性的子集来判断该属性的优劣，计算该属性对此属性不缺失的子集上产生的信息增益，用这个信息增益×该子集占整个数据集比重得到最终总的信息增益。<br>(2)给定的划分属性值上存在缺失如何解决？<br>答： 若样本x在属性a下的取值已知，则将x划入其取值对应的子节点；若未知，将x同时以每个分支所占比例的权重划入所有子节点</li>
+</ul>
+
     </div>
 
     
@@ -332,7 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4-决策树"><span class="nav-number">1.</span> <span class="nav-text">4 决策树</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4-决策树"><span class="nav-number">1.</span> <span class="nav-text">4 决策树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-1-基本流程"><span class="nav-number">2.</span> <span class="nav-text">4.1 基本流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-划分选择"><span class="nav-number">2.1.</span> <span class="nav-text">4.2 划分选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-ID3算法"><span class="nav-number">2.1.1.</span> <span class="nav-text">4.2.1 ID3算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-C4-5算法"><span class="nav-number">2.1.2.</span> <span class="nav-text">4.2.2 C4.5算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-CART算法"><span class="nav-number">2.1.3.</span> <span class="nav-text">4.2.3 CART算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-剪枝处理——解决“过拟合”"><span class="nav-number">2.2.</span> <span class="nav-text">4.3 剪枝处理——解决“过拟合”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-连续值和缺失值处理"><span class="nav-number">2.3.</span> <span class="nav-text">4.4 连续值和缺失值处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-连续值"><span class="nav-number">2.3.1.</span> <span class="nav-text">4.4.1 连续值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-缺失值处理"><span class="nav-number">2.3.2.</span> <span class="nav-text">4.4.2 缺失值处理</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
