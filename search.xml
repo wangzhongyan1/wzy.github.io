@@ -1,8 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Chapter 4</title>
+    <url>/2020/07/23/Chapter%204/</url>
+    <content><![CDATA[<h1 id="4-决策树"><a href="#4-决策树" class="headerlink" title="4 决策树"></a>4 决策树</h1>]]></content>
+      <categories>
+        <category>Watermelon</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Chapter 3</title>
+    <url>/2020/07/23/Chapter%203/</url>
+    <content><![CDATA[<h1 id="3-线性模型"><a href="#3-线性模型" class="headerlink" title="3 线性模型"></a>3 线性模型</h1><p>基本形式：</p>
+<script type="math/tex; mode=display">f(x)=w^Tx+b</script><p>w,b为重要的参数，如何求得跟如何衡量f(x)与y之间的差别有关，例如前面介绍过的均方差，使用均方差则称为最小二乘法(找到一条线，使得所有样本到直线的欧式距离最小)，求解的方法就叫线性回归模型的最小二乘“参数估计”，分别对w,b求偏导令其为0求得最优解。当属性增多时，称为“多元线性回归”</p>
+<h2 id="3-1-线性回归-连续型进行回归"><a href="#3-1-线性回归-连续型进行回归" class="headerlink" title="3.1 线性回归(连续型进行回归)"></a>3.1 线性回归(连续型进行回归)</h2><h2 id="3-1-1-传统线性回归"><a href="#3-1-1-传统线性回归" class="headerlink" title="3.1.1 传统线性回归"></a>3.1.1 传统线性回归</h2><p>目的：尽可能准确地预测实值输出标记<br>对于离散属性:</p>
+<ul>
+<li>若属性存在“序”的关系，则通过连续化将其转换为连续值。如身高{高，矮}可以认为高&gt;矮，折转化为{1.0,0.0}。</li>
+<li>若k个属性不存在“序”的关系则转换为k维向量。例如{西瓜,南瓜,黄瓜}转换为{1,0,0}{0,1,0}{0,0,1}。<br>当多属性求解时，情况会更为复杂：</li>
+<li>X*X的转置可能不是正定矩阵或者满秩，则会求得多个解，此时由算法归纳偏好如引入正则化项。  </li>
+</ul>
+<h3 id="3-1-2-线性回归的变形-广义线性模型"><a href="#3-1-2-线性回归的变形-广义线性模型" class="headerlink" title="3.1.2 线性回归的变形(广义线性模型)"></a>3.1.2 线性回归的变形(广义线性模型)</h3><p>当原始线性回归模型不能满足需求，如y值不是线性变化。会存在一个“联系函数”，或者我将他理解为映射函数。将y映射到一条直线上：</p>
+<script type="math/tex; mode=display">y=g^{-1}(w^T+b)</script><p>其中g()为该联系函数。</p>
+<h4 id="3-1-2-1-对数线性回归"><a href="#3-1-2-1-对数线性回归" class="headerlink" title="3.1.2.1 对数线性回归"></a>3.1.2.1 对数线性回归</h4><p>当y是在指数尺度上变化，我们就可以让线性模型逼近y的衍生物。<br>形式：</p>
+<script type="math/tex; mode=display">lny=w^T+b</script><p>即将输出标记的对数作为回归目标，这里对数函数将线性回归模型的预测值与真实值联系起来，其实就是将指数曲线投影在一条直线上。也就是g()=ln()时的模型。</p>
+<h2 id="3-2-对数几率回归-logit回归-离散的进行分类"><a href="#3-2-对数几率回归-logit回归-离散的进行分类" class="headerlink" title="3.2 对数几率回归(logit回归)(离散的进行分类)"></a>3.2 对数几率回归(logit回归)(离散的进行分类)</h2><p>优点</p>
+<ul>
+<li>直接对分类可能性进行建模，不需要事先假设数据分布，避免了假设分布不准确的问题。</li>
+<li>不仅得到“类别”，还得到“概率”。</li>
+<li>对率阶函数是任意阶可导凸函数  </li>
+</ul>
+<p>其实还是使用广义线性模型，例如二分类问题，需要映射到{0,1}上，这个函数需要单调可微，把预测值映射到{0,1}上。如对数几率函数(是个Sigmoid函数,就类似S那个,嗐，就逻辑回归logit)。</p>
+<script type="math/tex; mode=display">y=\frac{1}{1+e^{-z}}</script><p>将它作为g()带入得到：</p>
+<script type="math/tex; mode=display">y=\frac{1}{1+e^{-(w^Tx+b)}}</script><p>注：此时将y假设为x为正例的可能性，也就是(1-y)为x为反例的可能性，他俩的比值称为“几率”，反应x作为正例的相对可能性，对相对可能性取ln对数得到对数几率，原式可变为：</p>
+<script type="math/tex; mode=display">ln\frac{y}{1-y}=w^Tx+b</script><p>也就是说这里是用回归结果去逼近对数几率。<br>注意：这里虽然叫回归，实际是一种分类方法。<br>求解方式这里先不写了，要极大似然。</p>
+<h2 id="3-3-线性判别分析-LDA-Fisher判别分析"><a href="#3-3-线性判别分析-LDA-Fisher判别分析" class="headerlink" title="3.3 线性判别分析(LDA,Fisher判别分析)"></a>3.3 线性判别分析(LDA,Fisher判别分析)</h2><h3 id="3-3-1-二分类线性判别分析"><a href="#3-3-1-二分类线性判别分析" class="headerlink" title="3.3.1 二分类线性判别分析"></a>3.3.1 二分类线性判别分析</h3><p>基本思想：将训练样本均投射到一条直线上，使得同类别尽可能进，不同类别尽可能远。————让各类的协方差之和尽可能小，不同类中心距离尽可能大。基于以上内容，定义两个矩阵：</p>
+<ul>
+<li>类内散度矩阵<script type="math/tex; mode=display">S_w=\sum_0+\sum_1</script><script type="math/tex; mode=display">=\sum_{x\in X_0}(x-\mu_0)(x-\mu_0)^T+\sum_{x\in X_1}(x-\mu_1)(x-\mu_1)^T</script></li>
+<li>类间散度矩阵<script type="math/tex; mode=display">S_b=(x-\mu_1)(x-\mu_1)^T</script>因此，原本最大化类间距离最小化类内距离的任务可以转变为最大化(w为投影的直线,<script type="math/tex">w^T\mu_0</script>即是0类在直线上的投影,<script type="math/tex">w^T\sum_0w</script>为0类在直线上的协方差),J在此称为“广义瑞利商”：<script type="math/tex; mode=display">J=\frac{||w^T\mu_0-w^T\mu_1||_2^2}{w^T\sum_0w+w^T\sum_1w}</script><script type="math/tex; mode=display">=\frac{w^T(\mu_0-\mu_1)(\mu_0-\mu_1)^Tw}{w^T(\sum_0+\sum_1)w}</script><script type="math/tex; mode=display">=\frac{w^TS_bw}{w^TS_ww}</script>这里，我们观察到J的分子分母都是关于w得二次项，因此最终结果与w长度无关只与方向有关。(这里将分类问题转化为求解最优解问题)</li>
+</ul>
+<p>在这里使用拉格朗日乘数法求得w：</p>
+<script type="math/tex; mode=display">w=S^{-1}_w(\mu_0-\mu_1)</script><p>随后对<script type="math/tex">S_w</script>进行奇异值分解得到<script type="math/tex">S_w^{-1}</script>。</p>
+<h3 id="3-3-2-多分类线性判别分析"><a href="#3-3-2-多分类线性判别分析" class="headerlink" title="3.3.2 多分类线性判别分析"></a>3.3.2 多分类线性判别分析</h3><p>为了推广到多维，定义,第i类示例数为<script type="math/tex">m_i</script>,<script type="math/tex">\mu</script>是所有示例均指向量。</p>
+<ul>
+<li>全局散度矩阵：<script type="math/tex; mode=display">S_t=S_b+S_w</script><script type="math/tex; mode=display">=\sum^{m}_{i=1}(x_i-\mu)(x_i-\mu)^T</script>这里我们将它推广到多维，只需要重新定义<script type="math/tex">S_w</script>为每个类别散度矩阵之和，<script type="math/tex">S_b=S_t-S_w</script>，多分类LDA有多种方法实现。  </li>
+</ul>
+<p>将w看成一个投影矩阵，类似奇异值分解得思想，则线性判别分析将样本投影到N-1维空间(N为类簇数)，因此LDA被认为是一种经典的监督降维技术。</p>
+<h2 id="3-4-多分类学习-如何拆分、如何集成"><a href="#3-4-多分类学习-如何拆分、如何集成" class="headerlink" title="3.4 多分类学习(如何拆分、如何集成)"></a>3.4 多分类学习(如何拆分、如何集成)</h2><p>考虑多个类别，多份了ide基本思想是“拆解”，即分为多个二分类任务，训练多个二分类学习器(分类器)，然后将分类结果进行集成。</p>
+<h3 id="3-4-1-拆分策略"><a href="#3-4-1-拆分策略" class="headerlink" title="3.4.1 拆分策略"></a>3.4.1 拆分策略</h3><ul>
+<li>一对一(OvO):将N个类别两两配对，产生N(N-1)/2个二分类任务，也就训练出这么多个分类器，也就会产生同样个数得分类结果，最终结果由投票产生。</li>
+<li>一对其余(OvR):每次将一个样例作为正例，其余作为反例，训练出N个分类结果。测试时若仅有唯一一个预测其为正，例如：将<script type="math/tex">C_1</script>….当正类分别训练了N个分类器，预测结果分别为“—+-”，则将<script type="math/tex">C_3</script>得类别作为预测结果。若有多个分类器将其预测为正类，则考虑分类器预测置信度，置信度最大的作为最终分类结果。</li>
+</ul>
+<ul>
+<li>上述两种方式对比，显然OvO的储存开销和测试时间开销大(需要训练的分类器多)，但是类别多时，训练时间开销小(每次训练时不需要使用全部样例，仅需要用到两个类得样例)，性能取决于数据分布，多数情况两者差距不大。</li>
+</ul>
+<ul>
+<li>多对多(MvM):每次将若干类作为正类，若干类作为反类，可以说时OvO和OvR得一般形式。上述正反类并不是随意选取，而需要特殊设计。</li>
+</ul>
+<h3 id="3-4-2-纠错输出码"><a href="#3-4-2-纠错输出码" class="headerlink" title="3.4.2 纠错输出码"></a>3.4.2 纠错输出码</h3><p>举例一种常用的MvM编码技术(纠错输出码：ECOC)：</p>
+<ul>
+<li>编码：对N个类别做M次划分，生成M个二分类器。</li>
+<li>解码：将M个分类器分别对测试样本进行预测，M个解雇组成一个新码，将新码与每个类别的码进行比较欧式距离/海明威距离(类别划分通过编码矩阵指定)，取最近的作为最终结果。</li>
+<li>ECOC码越长纠错能力越强，但计算、存储开销也将增大。此外因为有限类别数目，可能的组合数有限，码数过长也会失去意义。</li>
+<li>对同等长度的编码，任意两个类别的距离越远纠错能力越强。</li>
+</ul>
+<h2 id="3-5-类别不平衡问题"><a href="#3-5-类别不平衡问题" class="headerlink" title="3.5 类别不平衡问题"></a>3.5 类别不平衡问题</h2><p>类别不平衡是指分类问题中不同类别训练样本差距悬殊：如正例：900；反例：100。常见的解决方法有：</p>
+<ul>
+<li>“欠采样”：900个取100个</li>
+<li>“过采样”：例如对返例进行插值如SMOTE</li>
+<li>“再缩放”(代价敏感学习的基础)：假设判定规则为<script type="math/tex">\frac{y}{1-y}>1</script>则为正，但是因为样例个数相差悬殊，观测几率为<script type="math/tex">\frac{m^+}{m^-}</script>,那么应该是<script type="math/tex">\frac{y}{1-y}>\frac{m^+}{m^-}</script>时为正例子。即：<script type="math/tex">\frac{y'}{1-y'}=\frac{y}{1-y}\times\frac{m^+}{m^-}</script>。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Watermelon</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>拉格朗日乘数法</title>
+    <url>/2020/07/29/categories/</url>
+    <content><![CDATA[<p>在数学最优问题中，拉格朗日乘数法是一种寻找变量受一个或多个条件所限制的多元函数的极值的方法。</p>
+<p>这种方法将一个有n 个变量与k 个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数：约束方程的梯度的线性组合里每个向量的系数。</p>
+<h1 id="定义介绍"><a href="#定义介绍" class="headerlink" title="定义介绍"></a>定义介绍</h1><p>设给定二元函数z=ƒ(x,y)和附加条件φ(x,y)=0，为寻找z=ƒ(x,y)在附加条件下的极值点，先做拉格朗日函数 ，其中λ为参数。<br>令F(x,y,λ)对x和y和λ的一阶偏导数等于零，即<br>F’x=ƒ’x(x,y)+λφ’x(x,y)=0<br>F’y=ƒ’y(x,y)+λφ’y(x,y)=0<br>F’λ=φ(x,y)=0<br>由上述方程组解出x,y及λ，如此求得的(x,y)，就是函数z=ƒ(x,y)在附加条件φ(x,y)=0下的可能极值点。<br>若这样的点只有一个，由实际问题可直接确定此即所求的点。<br>具体解法看一下坎卦数3.37 现在不太懂</p>
+]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Chapter 2</title>
-    <url>/2020/07/16/Hello-world-0/</url>
+    <url>/2020/07/16/Chapter%202/</url>
     <content><![CDATA[<h1 id="Chapter-2-模型评估与选择"><a href="#Chapter-2-模型评估与选择" class="headerlink" title="Chapter 2 模型评估与选择"></a>Chapter 2 模型评估与选择</h1><p>先留一个第一章的坑现在懒得填了，以后…以后….</p>
 <font color=#0099ff size=3 face="黑体">注：此处误差均指误差期望</font> 
 
@@ -81,5 +166,10 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>奇异值分解</title>
+    <url>/2020/07/29/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
