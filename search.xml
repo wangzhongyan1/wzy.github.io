@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Chapter5</title>
+    <url>/2020/08/02/Chapter5/</url>
+    <content><![CDATA[<h1 id="5-神经网络-一种监督学习算法"><a href="#5-神经网络-一种监督学习算法" class="headerlink" title="5 神经网络(一种监督学习算法)"></a>5 神经网络(一种监督学习算法)</h1><h1 id="5-1-B-P神经网络-误差逆传播"><a href="#5-1-B-P神经网络-误差逆传播" class="headerlink" title="5.1 B-P神经网络(误差逆传播)"></a>5.1 B-P神经网络(误差逆传播)</h1><p>B-P神经网络的基本结构大家都熟悉，分为输入层、隐藏层和输出层。假设训练例<script type="math/tex">(x_k,y_k)</script>,输入为<script type="math/tex">x_k</script>,输出为<script type="math/tex">y_k</script>,那么此时均方差为：<script type="math/tex">E_k=\frac{1}{2}\sum_{j=1}^{l}(\hat{y}_j^k-y_j^k)^2</script>,此处采用“梯度下降法”倒回去更新隐藏层到输出层的权重“w”:以目标的负梯度对参数进行调整。</p>
+<script type="math/tex; mode=display">\Delta w=-\eta\frac{\partial E_k}{\partial w}</script><p>其中<script type="math/tex">\eta\in(0,1)</script>为学习率。推导过程可以看书里面有，最后结果就是：</p>
+<p>输入：<br>训练集：<script type="math/tex">D={(x_k,y_k)}_{k=1}^m</script></p>
+<p>学习率：<script type="math/tex">\eta</script></p>
+<p>过程：</p>
+<ol>
+<li>在(0,1)范围内初始化所有阈值和连接权</li>
+<li>对训练集中的每组数据均计算出当前样本的输出<script type="math/tex">\hat{y}</script>。</li>
+<li>根据··</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Watermelon</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Chapter 4</title>
     <url>/2020/07/23/Chapter%204/</url>
     <content><![CDATA[<h1 id="4-决策树"><a href="#4-决策树" class="headerlink" title="4 决策树"></a>4 决策树</h1><h1 id="4-1-基本流程"><a href="#4-1-基本流程" class="headerlink" title="4.1 基本流程"></a>4.1 基本流程</h1><p>决策树是基于树的结构进行决策、分类。<br>一个典型的决策树可以是：</p>
@@ -36,22 +54,6 @@
 ]]></content>
       <categories>
         <category>Watermelon</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>奇异值分解</title>
-    <url>/2020/07/29/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>拉格朗日乘数法</title>
-    <url>/2020/07/29/categories/</url>
-    <content><![CDATA[<p>在数学最优问题中，拉格朗日乘数法是一种寻找变量受一个或多个条件所限制的多元函数的极值的方法。</p>
-<p>这种方法将一个有n 个变量与k 个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数：约束方程的梯度的线性组合里每个向量的系数。</p>
-<h1 id="定义介绍"><a href="#定义介绍" class="headerlink" title="定义介绍"></a>定义介绍</h1><p>设给定二元函数z=ƒ(x,y)和附加条件φ(x,y)=0，为寻找z=ƒ(x,y)在附加条件下的极值点，先做拉格朗日函数 ，其中λ为参数。<br>令F(x,y,λ)对x和y和λ的一阶偏导数等于零，即<br>F’x=ƒ’x(x,y)+λφ’x(x,y)=0<br>F’y=ƒ’y(x,y)+λφ’y(x,y)=0<br>F’λ=φ(x,y)=0<br>由上述方程组解出x,y及λ，如此求得的(x,y)，就是函数z=ƒ(x,y)在附加条件φ(x,y)=0下的可能极值点。<br>若这样的点只有一个，由实际问题可直接确定此即所求的点。<br>具体解法看一下坎卦数3.37 现在不太懂</p>
-]]></content>
-      <categories>
-        <category>math</category>
       </categories>
   </entry>
   <entry>
@@ -189,6 +191,17 @@
       </categories>
   </entry>
   <entry>
+    <title>拉格朗日乘数法</title>
+    <url>/2020/07/29/categories/</url>
+    <content><![CDATA[<p>在数学最优问题中，拉格朗日乘数法是一种寻找变量受一个或多个条件所限制的多元函数的极值的方法。</p>
+<p>这种方法将一个有n 个变量与k 个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数：约束方程的梯度的线性组合里每个向量的系数。</p>
+<h1 id="定义介绍"><a href="#定义介绍" class="headerlink" title="定义介绍"></a>定义介绍</h1><p>设给定二元函数z=ƒ(x,y)和附加条件φ(x,y)=0，为寻找z=ƒ(x,y)在附加条件下的极值点，先做拉格朗日函数 ，其中λ为参数。<br>令F(x,y,λ)对x和y和λ的一阶偏导数等于零，即<br>F’x=ƒ’x(x,y)+λφ’x(x,y)=0<br>F’y=ƒ’y(x,y)+λφ’y(x,y)=0<br>F’λ=φ(x,y)=0<br>由上述方程组解出x,y及λ，如此求得的(x,y)，就是函数z=ƒ(x,y)在附加条件φ(x,y)=0下的可能极值点。<br>若这样的点只有一个，由实际问题可直接确定此即所求的点。<br>具体解法看一下坎卦数3.37 现在不太懂</p>
+]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/07/16/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
@@ -201,5 +214,10 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>奇异值分解</title>
+    <url>/2020/07/29/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
